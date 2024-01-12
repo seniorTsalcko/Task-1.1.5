@@ -12,8 +12,8 @@ import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
     private final SessionFactory sessionFactory = Util.getConnection();
-    Session session = sessionFactory.openSession();
-    Transaction transaction = session.beginTransaction();
+    private final Session session = sessionFactory.openSession();
+    private final Transaction transaction = session.beginTransaction();
 
     public UserDaoHibernateImpl() {
         // TODO document why this constructor is empty
@@ -31,8 +31,6 @@ public class UserDaoHibernateImpl implements UserDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-        } finally {
-            session.close();
         }
     }
 
@@ -47,8 +45,6 @@ public class UserDaoHibernateImpl implements UserDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-        } finally {
-            session.close();
         }
     }
 
@@ -62,8 +58,6 @@ public class UserDaoHibernateImpl implements UserDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-        } finally {
-            session.close();
         }
     }
 
@@ -77,8 +71,6 @@ public class UserDaoHibernateImpl implements UserDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-        } finally {
-            session.close();
         }
     }
 
@@ -93,8 +85,6 @@ public class UserDaoHibernateImpl implements UserDao {
         } catch (HibernateException e) {
             e.printStackTrace();
             transaction.rollback();
-        } finally {
-            session.close();
         }
         return userList;
     }
@@ -109,8 +99,6 @@ public class UserDaoHibernateImpl implements UserDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-        } finally {
-            session.close();
         }
     }
 }
